@@ -1,0 +1,18 @@
+{
+  "name": "echo_bot",
+  "version": "0.1",
+  "description": "Echo Studios Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Echo Studios",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.0",
+    "googleapis": "^39.2.0",
+    "mongoose": "^5.5.11",
+    "ms": "^2.1.1",
+    "mysql": "^2.17.1"
+  }
+}
