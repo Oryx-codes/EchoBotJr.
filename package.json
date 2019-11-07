@@ -1,6 +1,6 @@
 {
-  "name": "echo_bot",
-  "version": "0.1",
+  "name": "echo_bot_jr",
+  "version": "1.0.0",
   "description": "Echo Studios Bot",
   "main": "index.js",
   "scripts": {
