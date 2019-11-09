@@ -61,12 +61,28 @@ module.exports.run = async (client, message, args) => {
 
         let mutetime = "5m";
 
-        await(wUser.addRole(muterole.id));
+        await(wUser.addRole(muterole.id)).then(wUser.send(`You have been muted in ${message.guild.name} for 3 Warnings.`))
 
         setTimeout(function(){
             wUser.removeRole(muterole.id)
-        })
+            wUser.send(`You have been unmuted in ${message.guild.name}.`)
+        }, ms(mutetime))
     }
 
+    if(warns[wUser.id].warns === 7) {
+        wUser.kick()
+        let kickchannel = message.guild.channels.find(`name`, "logs");
+        kickchannel.send(`<@${wUser.id}> Has been Kicked for 7 Warnings.`)
+    }
 
+    if(warns[wUser.id].warns === 12) {
+        wUser.ban()
+        let kickchannel = message.guild.channels.find(`name`, "logs");
+        kickchannel.send(`<@${wUser.id}> Has been Banned for 7 Warnings.`)
+    }
+
+}
+
+module.exports.help = {
+    name: "warn"
 }
