@@ -6,6 +6,7 @@ let warns = JSON.parse(fs.readFileSync("././data/warnings.json", "utf8"));
 module.exports.run = async (client, message, args) => {
 
     let dmauthW = message.author;
+    let godset = message.guild.id;
 
     if(!message.member.hasPermission("MANAGE_ROLES")) return dmauthW.send("You do not have the required Permissions!");
     let wUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
@@ -20,7 +21,7 @@ module.exports.run = async (client, message, args) => {
 
     warns[wUser.id].warns++;
 
-    fs.writeFile("../data/warnings.json", JSON.stringify(warns), (err) => {
+    fs.writeFile("././data/warnings.json", JSON.stringify(warns), (err) => {
         if(err) console.log(err)
     });
 
@@ -38,12 +39,12 @@ module.exports.run = async (client, message, args) => {
 
     warnchannel.send(warnEmbed);
 
-    if(warns[wUser.id].warns === 238746){
-        let muterole = message.guild.role.find(`name`, "muted")
+    if(warns[wUser.id].warns === 3){
+        let muterole = message.guild.roles.find(`name`, "muted")
         if(!muterole) {
             try{
         muterole = await message.guild.createRole({
-          name: "Muted",
+          name: "muted",
           mentionable: true,
           color: "#595959",
           permissions:[]
@@ -78,7 +79,7 @@ module.exports.run = async (client, message, args) => {
     if(warns[wUser.id].warns === 12) {
         wUser.ban()
         let kickchannel = message.guild.channels.find(`name`, "logs");
-        kickchannel.send(`<@${wUser.id}> Has been Banned for 7 Warnings.`)
+        kickchannel.send(`<@${wUser.id}> Has been Banned for 12 Warnings.`)
     }
 
 }
