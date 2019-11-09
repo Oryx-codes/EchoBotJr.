@@ -1,16 +1,16 @@
 const Discord = require("discord.js")
 const fs = require("fs")
 const ms = require("ms")
-let warns = JSON.parse(fs.readFileSync("../data/warnings.json", "utf8"));
+let warns = JSON.parse(fs.readFileSync("././data/warnings.json", "utf8"));
 
 module.exports.run = async (client, message, args) => {
 
     let dmauthW = message.author;
 
-    if(!message.member.hasPermission("268435456")) return dmauthW.send("You do not have the required Permissions!");
+    if(!message.member.hasPermission("MANAGE_ROLES")) return dmauthW.send("You do not have the required Permissions!");
     let wUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
     if(!wUser) return message.reply("I could not find a user with that name, or you did not specify one.")
-    if(wUser.hasPermission("268435456")) return message.reply("This person can not be warned at your permission level.");
+    if(wUser.hasPermission("MANAGE_ROLES")) return message.reply("This person can not be warned at your permission level.");
     let reason = args.join(" ").slice(22)
     if(!reason) return message.reply("You did not specify a reason.")
 
